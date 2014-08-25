@@ -11,14 +11,18 @@
       <% @week.days.order(:date).each do |day| %>
         <div class="col-md-2 day cell">
           <ul>
-            <% day.items_for_grade(grade).each do |item| %>
-              <li>
-                <% if item.url %>
-                  <%= link_to item.text, item.url %>
-                <% else %>
-                  <%= item.text %>
-                <% end %>
-              </li>
+            <% if day.items_for_grade(grade).any? %>
+              <% day.items_for_grade(grade).each do |item| %>
+                <li>
+                  <% if item.url %>
+                    <%= link_to item.text, item.url %>
+                  <% else %>
+                    <%= item.text %>
+                  <% end %>
+                </li>
+              <% end %>
+            <% else %>
+                <li>Dbl click to add items.</li>
             <% end %>
           </ul>
           <%= form_tag items_day_path(day) do %>
