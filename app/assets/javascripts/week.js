@@ -11,7 +11,7 @@ Week = function() {
             return false;
         });
         $(".btn-danger").on("click", function(event) {
-            var $cell = $(this).parents("td");
+            var $cell = $(this).parents("div.cell");
             self.toggle($cell);
             return false;
         });

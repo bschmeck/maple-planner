@@ -1,23 +1,27 @@
-table {
-  margin: 20px auto;
-  border: 1px solid #ccc;
-  width: calc(100% - 40px);
+.container-fluid {
+  margin: 20px;
 }
 
-th {
-  border: 1px solid #ccc;  
+.header {
+  border-bottom: 1px solid #000;
   text-align: center;
 }
 
-td {
-  border: 1px solid #ccc;  
+.cell {
+  margin: 0px 5px;
 }
+
+.cell:first-child {
+  margin-left: 0px;
+}
+
+.cell:last-child { 
+  margin-right: 0px; 
+}
+
 .grade {
   width: 75px;
   text-align: center;
-}
-.day {
-  width: auto;
 }
 
 ul {

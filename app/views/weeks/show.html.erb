@@ -1,15 +1,15 @@
-<table>
-  <tr>
-    <th>Grade</th>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1 header grade cell"><br/>Grade</div>
     <% @week.days.order(:date).each do |day| %>
-      <th><%= day.name %><br/><%= day.date.strftime("%-m/%d") %></th>
+      <div class="col-md-2 header cell"><%= day.name %><br/><%= day.date.strftime("%-m/%d") %></div>
     <% end %>
-  </tr>
+  </div>
   <% [6,7,8].each do |grade| %>
-    <tr>
-      <td class="grade"><%= grade %></td>
+    <div class="row">
+      <div class="col-md-1 grade cell"><%= grade %></div>
       <% @week.days.order(:date).each do |day| %>
-        <td class="day">
+        <div class="col-md-2 day cell">
           <ul>
             <% day.items_for_grade(grade).each do |item| %>
               <li>
@@ -28,11 +28,11 @@
             <%= submit_tag "Update", class: "btn btn-primary" %>
             <%= submit_tag "Cancel", class: "btn btn-danger" %>
           <% end %>
-        </td>
+        </div>
       <% end %>
-    </tr>
+    </div>
   <% end %>
-</table>
+</div>
 
 <script type="text/javascript">
   $(function() {
