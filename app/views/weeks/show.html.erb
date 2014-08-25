@@ -25,8 +25,8 @@
             <%= text_area_tag "items", day.items_for_grade(grade).map{|item| "#{item.text} [#{item.url}]" }.join("\n\n") %>
             <br>
             <%= hidden_field_tag :grade, grade %>
-            <%= submit_tag "Update" %>
-            <%= submit_tag "Cancel", class: "cancel" %>
+            <%= submit_tag "Update", class: "btn btn-primary" %>
+            <%= submit_tag "Cancel", class: "btn btn-danger" %>
           <% end %>
         </td>
       <% end %>

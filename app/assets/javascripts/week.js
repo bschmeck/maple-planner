@@ -8,7 +8,7 @@ Week = function() {
                 self.toggle($cell);
             return false;
         });
-        $(".cancel").on("click", function(event) {
+        $(".btn-danger").on("click", function(event) {
             var $cell = $(this).parents("td");
             self.toggle($cell);
             return false;
