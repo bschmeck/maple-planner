@@ -7,21 +7,30 @@
   text-align: center;
 }
 
+.row {
+  margin: 5px 0;
+}
+
 .cell {
-  margin: 0px 5px;
+  margin: 0 5px;
 }
 
 .cell:first-child {
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 .cell:last-child { 
-  margin-right: 0px; 
+  margin-right: 0; 
 }
 
 .grade {
   width: 75px;
   text-align: center;
+}
+
+.day {
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 ul {
