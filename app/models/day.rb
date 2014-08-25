@@ -1,5 +1,5 @@
 class Day < ActiveRecord::Base
   belongs_to :week
 
-  has_many :items
+  has_many :items, dependent: :destroy
 end
