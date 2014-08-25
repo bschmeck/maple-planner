@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <th>Grade</th>
+    <% @week.days.order(:date).each do |day| %>
+      <th><%= day.name %><br/><%= day.date.strftime("%-m/%d") %></th>
+    <% end %>
+  </tr>
+  <% [6,7,8].each do |grade| %>
+    <tr>
+      <td class="grade"><%= grade %></td>
+      <% @week.days.order(:date).each do |day| %>
+        <td class="day">
+          <ul>
+            <% day.items_for_grade(grade).each do |item| %>
+              <li>
+                <% if item.url %>
+                  <%= link_to item.text, item.url %>
+                <% else %>
+                  <%= item.text %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <%= form_tag items_day_path(day) do %>
+            <%= text_area_tag "day_#{day.id}_grade_#{grade}", day.items_for_grade(grade).map{|item| "#{item.text} [#{item.url}]" }.join("\n\n") %>
+            <%= submit_tag "Update" %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
