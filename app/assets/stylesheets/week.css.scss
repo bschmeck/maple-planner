@@ -1,13 +1,23 @@
 table {
-  margin: 20px;
-}
-
-table, th, td {
+  margin: 20px auto;
   border: 1px solid #ccc;
+  width: calc(100% - 40px);
 }
 
-.grade {
+th {
+  border: 1px solid #ccc;  
   text-align: center;
+}
+
+td {
+  border: 1px solid #ccc;  
+}
+.grade {
+  width: 75px;
+  text-align: center;
+}
+.day {
+  width: auto;
 }
 
 ul {
@@ -17,4 +27,10 @@ ul {
 
 form {
   display: none;
+  margin: 10px;
+}
+
+textarea {
+  width: 90%;
+  margin-bottom: 10px;
 }
