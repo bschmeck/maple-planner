@@ -22,11 +22,21 @@
             <% end %>
           </ul>
           <%= form_tag items_day_path(day) do %>
-            <%= text_area_tag "day_#{day.id}_grade_#{grade}", day.items_for_grade(grade).map{|item| "#{item.text} [#{item.url}]" }.join("\n\n") %>
+            <%= text_area_tag "items", day.items_for_grade(grade).map{|item| "#{item.text} [#{item.url}]" }.join("\n\n") %>
+            <br>
+            <%= hidden_field_tag :grade, grade %>
             <%= submit_tag "Update" %>
+            <%= submit_tag "Cancel", class: "cancel" %>
           <% end %>
         </td>
       <% end %>
     </tr>
   <% end %>
 </table>
+
+<script type="text/javascript">
+  $(function() {
+    var week = new Week();
+    week.init();
+  });
+</script>
