@@ -25,4 +25,5 @@ gem 'pg'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'table_print'
 end
