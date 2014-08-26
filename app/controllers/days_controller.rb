@@ -1,4 +1,6 @@
 class DaysController < ApplicationController
+  before_action :authenticate_user!
+
   def items
     day = Day.find(params[:id])
     ActiveRecord::Base.transaction do

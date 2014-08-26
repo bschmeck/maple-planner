@@ -1,5 +1,6 @@
 class Year < ActiveRecord::Base
   has_many :weeks, dependent: :destroy
+  belongs_to :user
 
   def self.populate(name, number_of_weeks, start_date)
     year = create(name: name)
