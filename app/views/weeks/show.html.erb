@@ -36,7 +36,7 @@
                 <li>Dbl click to add items.</li>
               <% end %>
             </ul>
-            <%= form_tag items_day_path(day) do %>
+            <%= form_tag items_day_path(day), class: "items_form" do %>
               <%= text_area_tag "items", day.items_for_grade(grade).map{|item| item.text + (item.url ? " [#{item.url}]" : "") }.join("\n\n"), rows: 5 %>
               <br>
               <%= hidden_field_tag :grade, grade %>
