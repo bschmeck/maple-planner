@@ -31,6 +31,10 @@ gem 'devise-encryptable', '~> 0.2.0'
 
 gem 'friendly_id', '~> 5.0.0'
 
+group :production do
+  gem 'unicorn'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'table_print'
