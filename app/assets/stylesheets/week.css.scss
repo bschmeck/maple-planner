@@ -2,6 +2,14 @@
   margin: 20px;
 }
 
+.col-md-1, .col-md-2, .col-md-3 {
+  padding: 0 5px;
+}
+
+.header.text-info {
+  font-weight: bold;
+}
+
 .header {
   border-bottom: 1px solid #000;
   text-align: center;
@@ -16,15 +24,15 @@
 }
 
 .cell {
-  margin: 0 5px;
+  margin: 0 4px;
 }
 
 .cell:first-child {
   margin-left: 0;
 }
 
-.cell:last-child { 
-  margin-right: 0; 
+.cell:last-child {
+  margin-right: 0;
 }
 
 .grade {
@@ -38,7 +46,7 @@
 }
 
 ul {
-  margin: 0;
+  margin: 0 0 0 15px;
   padding: 10px;
 }
 

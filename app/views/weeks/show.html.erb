@@ -1,37 +1,49 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-1 header grade cell"><br/>Grade</div>
+    <div class="col-md-1 grade">
+      <div class="header cell"><br/>Grade</div>
+    </div>
     <% @week.days.order(:date).each do |day| %>
-      <div class="col-md-2 header cell"><%= day.name %><br/><%= day.date.strftime("%-m/%d") %></div>
+      <% col_width = day.today? ? 3 : 2 %>
+      <div class="col-md-<%= col_width %>">
+        <div class="header cell <%= "text-info" if day.today? %>">
+          <%= day.name %><br/><%= day.date.strftime("%-m/%d") %>
+        </div>
+      </div>
     <% end %>
   </div>
   <% [6,7,8].each do |grade| %>
     <div class="row">
-      <div class="col-md-1 grade cell"><%= grade %></div>
+      <div class="col-md-1 grade">
+        <div class="cell"><%= grade %></div>
+      </div>
       <% @week.days.order(:date).each do |day| %>
-        <div class="col-md-2 day cell">
-          <ul>
-            <% if day.items_for_grade(grade).any? %>
-              <% day.items_for_grade(grade).each do |item| %>
-                <li>
-                  <% if item.url %>
-                    <%= link_to item.text, item.url %>
-                  <% else %>
-                    <%= item.text %>
-                  <% end %>
-                </li>
-              <% end %>
-            <% else %>
+        <% col_width = day.today? ? 3 : 2 %>
+        <div class="col-md-<%= col_width %>">
+          <div class="day cell <%= "bg-info" if day.today? %>">
+            <ul>
+              <% if day.items_for_grade(grade).any? %>
+                <% day.items_for_grade(grade).each do |item| %>
+                  <li>
+                    <% if item.url %>
+                      <%= link_to item.text, item.url %>
+                    <% else %>
+                      <%= item.text %>
+                    <% end %>
+                  </li>
+                <% end %>
+              <% else %>
                 <li>Dbl click to add items.</li>
+              <% end %>
+            </ul>
+            <%= form_tag items_day_path(day) do %>
+              <%= text_area_tag "items", day.items_for_grade(grade).map{|item| item.text + (item.url ? " [#{item.url}]" : "") }.join("\n\n"), rows: 5 %>
+              <br>
+              <%= hidden_field_tag :grade, grade %>
+              <%= submit_tag "Update", class: "btn btn-primary" %>
+              <%= submit_tag "Cancel", class: "btn btn-danger" %>
             <% end %>
-          </ul>
-          <%= form_tag items_day_path(day) do %>
-            <%= text_area_tag "items", day.items_for_grade(grade).map{|item| item.text + (item.url ? " [#{item.url}]" : "") }.join("\n\n"), rows: 5 %>
-            <br>
-            <%= hidden_field_tag :grade, grade %>
-            <%= submit_tag "Update", class: "btn btn-primary" %>
-            <%= submit_tag "Cancel", class: "btn btn-danger" %>
-          <% end %>
+          </div>
         </div>
       <% end %>
     </div>

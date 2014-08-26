@@ -6,4 +6,8 @@ class Day < ActiveRecord::Base
   def items_for_grade(grade)
     items.for_grade(grade)
   end
+
+  def today?
+    date == Date.today
+  end
 end
