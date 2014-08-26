@@ -1,4 +1,7 @@
 class Year < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :finders
+
   has_many :weeks, dependent: :destroy
   belongs_to :user
 

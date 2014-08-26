@@ -1,4 +1,7 @@
 class Week < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :number, use: :finders
+
   belongs_to :year
 
   has_many :days, dependent: :destroy
