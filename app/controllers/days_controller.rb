@@ -1,10 +1,12 @@
 class DaysController < ApplicationController
   def items
     day = Day.find(params[:id])
-    day.items_for_grade(params[:grade]).destroy_all
-    params[:items].lines.each do |line|
-      line = line.chomp
-      day.items << Item.from_line(line, params[:grade]) unless line.blank?
+    ActiveRecord::Base.transaction do
+      day.items_for_grade(params[:grade]).destroy_all
+      params[:items].lines.each do |line|
+        line = line.chomp
+        day.items << Item.from_line(line, params[:grade]) unless line.blank?
+      end
     end
 
     redirect_to year_week_url(day.week.year, day.week)
