@@ -6,8 +6,9 @@ class Item < ActiveRecord::Base
   def self.from_line(line, grade)
     item = Item.new
     item.grade = grade
-    if line.include? "["
-      parts = /(?<text>.*)\[(?<url>.*)\]/.match line
+    parts = /(?<text>.*)\[(?<url>.*)\]\s*$/.match line
+
+    if parts
       item.text = parts[:text].rstrip
       item.url = parts[:url]
     else
