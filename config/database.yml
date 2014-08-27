@@ -16,11 +16,3 @@ test:
   pool: 5
   username: calendar
   password: kathryn
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: calendar_production
-  pool: 5
-  username: calendar
-  password: kathryn
