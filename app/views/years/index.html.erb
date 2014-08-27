@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-md-offset-1">
+      <% if @years.any? %>
+        <div class="panel panel-default">
+          <div class="panel-heading">Your Years</div>
+          <div class="panel-body">
+            <ul>
+              <% @years.each do |year| %>
+                <li><%= link_to year.name, url_for(year) %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+      <button class="btn btn-lg btn-primary btn-block">New Year</button>
+    </div>
+  </div>
+</div>
