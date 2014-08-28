@@ -36,6 +36,8 @@
 <% content_for :javascripts do %>
   <script type="text/javascript">
     $(function(){
+     $("#start_date").datepicker({ dateFormat: "yy-mm-dd" });
+
      $("#new_year_btn").click(function(event){
        event.preventDefault();
 
