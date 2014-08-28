@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3 col-md-offset-1">
-      <% if @years.any? %>
-        <div class="panel panel-default">
-          <div class="panel-heading">Your Years</div>
+      <div class="panel panel-default">
+        <% if @years.any? %>
+          <div class="panel-heading">Your School Years</div>
           <div class="panel-body">
             <ul>
               <% @years.each do |year| %>
@@ -11,11 +11,37 @@
               <% end %>
             </ul>
           </div>
+        <% else %>
+          <div class="panel-body">
+            <p>Get started by creating a new School Year.</p>
+            <p>You can then view your schedule one week at a time, with weeks grouped together in a single School Year.</p>
+          </div>
+        <% end %>
         </div>
-      <% end %>
-    </div>
+      </div>
+
     <div class="col-md-3 col-md-offset-1">
-      <button class="btn btn-lg btn-primary btn-block">New Year</button>
+      <button class="btn btn-lg btn-primary btn-block" id="new_year_btn">Add School Year</button>
+      <%= form_tag @year, id: "new_year" do %>
+        <%= text_field_tag :name, '', autofocus: true, class: "form-control", placeholder: "Name, e.g. '2014-2015'" %>
+        <%= text_field_tag :start_date, '', class: "form-control", placeholder: "Starting date" %>
+        <%= text_field_tag :number_of_weeks, '', class: "form-control", placeholder: "Number of weeks to create" %>
+        <div class="week_text"><small>(Don't worry, you can always add more weeks later.)</small></div>
+        <%= submit_tag "Create", class: "btn btn-lg btn-primary btn-block" %>
+      <% end %>
     </div>
   </div>
 </div>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $(function(){
+     $("#new_year_btn").click(function(event){
+       event.preventDefault();
+
+       $("#new_year_btn").hide();
+       $("form#new_year").show();
+     });
+    });
+  </script>
+<% end %>

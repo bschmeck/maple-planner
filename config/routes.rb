@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
   end
 
-  resources :years, only: [:index, :show] do
+  resources :years, only: [:index, :show, :create] do
     resources :weeks, only: [:index, :show]
   end
 

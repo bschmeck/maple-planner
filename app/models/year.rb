@@ -5,8 +5,8 @@ class Year < ActiveRecord::Base
   has_many :weeks, dependent: :destroy
   belongs_to :user
 
-  def self.populate(name, number_of_weeks, start_date)
-    year = create(name: name)
+  def self.populate(user, name, number_of_weeks, start_date)
+    year = user.years.create(name: name)
     number_of_weeks.times do |i|
       year.weeks << Week.populate(i+1, start_date + i.weeks)
     end
