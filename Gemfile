@@ -36,6 +36,7 @@ gem 'friendly_id', '~> 5.0.0'
 
 group :production do
   gem 'unicorn'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
