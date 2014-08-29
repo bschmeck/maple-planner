@@ -25,12 +25,6 @@ class YearsController < ApplicationController
     else
       begin
         start_date = Date.parse(start_date)
-
-        # wday gives Sunday=0, Monday=1, ...
-        # Back up to the previous Monday by subtracting (wday - 1) days,
-        # unless wday is 0, in which case we subtract 6.
-        adjust = start_date.wday == 0 ? 6 : start_date.wday - 1
-        start_date -= adjust.days
       rescue ArgumentError => ex
         err = "Invalid format for start date"
       end

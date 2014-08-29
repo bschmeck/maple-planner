@@ -6,6 +6,7 @@ class Year < ActiveRecord::Base
   belongs_to :user
 
   def self.populate(user, name, number_of_weeks, start_date)
+    start_date = start_date.beginning_of_week
     year = user.years.create(name: name)
     number_of_weeks.times do |i|
       year.weeks << Week.populate(i+1, start_date + i.weeks)
