@@ -15,6 +15,10 @@ class Year < ActiveRecord::Base
     year
   end
 
+  def week_for(date)
+    weeks.find_by(start_date: date.beginning_of_week)
+  end
+
   def extend(number_of_weeks)
     last_week = weeks.order(:number).last
     start_number = last_week.number + 1
