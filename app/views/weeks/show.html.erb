@@ -48,6 +48,19 @@
       <% end %>
     </div>
   <% end %>
+
+  <div class="row">
+    <div class="col-md-1 navigation-prev">
+      <% if @week.prev_week %>
+        <%= link_to "< Previous", year_week_url(@week.year, @week.prev_week) %>
+      <% end %>
+    </div>
+    <div class="col-md-1 col-md-offset-10 navigation-next">
+      <% if @week.next_week %>
+        <%= link_to "Next >", year_week_url(@week.year, @week.next_week) %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
