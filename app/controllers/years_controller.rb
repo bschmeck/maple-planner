@@ -6,6 +6,14 @@ class YearsController < ApplicationController
     @year = Year.new
   end
 
+  def show
+    year = current_user.years.find(params[:id])
+    week = year.week_for(Date.today)
+    week ||= year.weeks.order(:number).first
+
+    redirect_to year_week_url(year, week)
+  end
+
   def create
     name = params[:name]
     err = "Name cannot be blank" if name.blank?
