@@ -43,4 +43,5 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'table_print'
+  gem 'factory_girl_rails', '~> 4.4.0'
 end

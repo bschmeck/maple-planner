@@ -14,4 +14,12 @@ class Week < ActiveRecord::Base
 
     week
   end
+
+  def prev_week
+    year.weeks.find_by(number: number - 1)
+  end
+
+  def next_week
+    year.weeks.find_by(number: number + 1)
+  end
 end
