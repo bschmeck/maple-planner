@@ -39,4 +39,20 @@ class YearsController < ApplicationController
       redirect_to :back, alert: err
     end
   end
+
+  def for_date
+    year = current_user.years.find(params[:id])
+    begin
+      date = Date.parse(params[:date])
+    rescue ArgumentError
+      redirect_to :back, alert: "Invalid date format"
+    end
+
+    week = year.week_for(date)
+    if week
+      redirect_to year_week_url(year, week)
+    else
+      redirect_to :back, alert: "Unable to find week for that date"
+    end
+  end
 end

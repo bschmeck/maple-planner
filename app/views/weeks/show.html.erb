@@ -55,7 +55,15 @@
         <%= link_to "< Previous", year_week_url(@week.year, @week.prev_week) %>
       <% end %>
     </div>
-    <div class="col-md-1 col-md-offset-10 navigation-next">
+    <div class="col-md-2 col-md-offset-4">
+      <%= form_tag for_date_year_path(@week.year), class: "navigation-form", method: :get do %>
+        <div class="input-group">
+          <%= text_field_tag "date", "", placeholder: "Jump to date", class: "form-control" %>
+          <span class="input-group-btn"><%= submit_tag "Go", class: "btn btn-primary" %></span>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-1 col-md-offset-4 navigation-next">
       <% if @week.next_week %>
         <%= link_to "Next >", year_week_url(@week.year, @week.next_week) %>
       <% end %>
@@ -65,6 +73,8 @@
 
 <script type="text/javascript">
   $(function() {
+    $("#date").datepicker({dateFormat: "yy-mm-dd"});
+
     var week = new Week();
     week.init();
   });
