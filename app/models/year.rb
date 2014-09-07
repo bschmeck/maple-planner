@@ -3,6 +3,7 @@ class Year < ActiveRecord::Base
   friendly_id :name, use: :finders
 
   has_many :weeks, dependent: :destroy
+  has_many :rows
   belongs_to :user
 
   def self.populate(user, name, number_of_weeks, start_date)

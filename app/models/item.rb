@@ -1,11 +1,13 @@
 class Item < ActiveRecord::Base
   belongs_to :day
+  belongs_to :row
+  has_one :year, through: :day
 
-  scope :for_grade, ->(grade){ where(grade: grade) }
+  scope :for_row, ->(row){ where(row: row) }
 
-  def self.from_line(line, grade)
+  def self.from_line(line, row)
     item = Item.new
-    item.grade = grade
+    item.row = row
     parts = /(?<text>.*)\[(?<url>.*)\]\s*$/.match line
 
     if parts
