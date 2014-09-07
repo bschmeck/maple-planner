@@ -15,6 +15,25 @@ Week = function() {
             self.toggle($cell);
             return false;
         });
+        $("#btn-add-row").on("click", function(event) {
+            var name = prompt("Please enter a name for the new row.");
+            var existingNames = $(".grade > .cell:not(.header)").map(function() { return $(this).text(); }).toArray();
+
+            while (name == "") {
+                name = prompt("Name cannot be blank.\nPlease enter a name for the new row.");
+            }
+
+            while (existingNames.indexOf(name) >= 0) {
+                name = prompt("A row with that name already exists.\nPlease enter a different name for the new row.");
+            }
+
+            if (name == null)
+                // User clicked cancel.
+                return false;
+
+            $("#add-row-name").val(name);
+            $("#add-row-form").submit();
+        });
     };
 
     self.toggle = function($cell) {

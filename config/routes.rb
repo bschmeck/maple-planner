@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :for_date
     end
     resources :weeks, only: [:index, :show]
+    resources :rows, only: [:create]
   end
 
   resources :days, only: [] do

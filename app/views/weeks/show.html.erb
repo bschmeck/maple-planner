@@ -49,24 +49,37 @@
     </div>
   <% end %>
 
+  <% if @rows.any? %>
+    <div class="row">
+      <div class="col-md-1 navigation-prev">
+        <% if @week.prev_week %>
+          <%= link_to "< Previous", year_week_url(@week.year, @week.prev_week) %>
+        <% end %>
+      </div>
+      <% offset = @week.days.any?(&:today?) ? 4 : 3 %>
+      <div class="col-md-2 col-md-offset-<%= offset %>">
+        <%= form_tag for_date_year_path(@week.year), class: "navigation-form", method: :get do %>
+          <div class="input-group">
+            <%= text_field_tag "date", "", placeholder: "Jump to date", class: "form-control" %>
+            <span class="input-group-btn"><%= submit_tag "Go", class: "btn btn-primary" %></span>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-1 col-md-offset-4 navigation-next">
+        <% if @week.next_week %>
+          <%= link_to "Next >", year_week_url(@week.year, @week.next_week) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row">
-    <div class="col-md-1 navigation-prev">
-      <% if @week.prev_week %>
-        <%= link_to "< Previous", year_week_url(@week.year, @week.prev_week) %>
-      <% end %>
-    </div>
-    <div class="col-md-2 col-md-offset-4">
-      <%= form_tag for_date_year_path(@week.year), class: "navigation-form", method: :get do %>
-        <div class="input-group">
-          <%= text_field_tag "date", "", placeholder: "Jump to date", class: "form-control" %>
-          <span class="input-group-btn"><%= submit_tag "Go", class: "btn btn-primary" %></span>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-md-1 col-md-offset-4 navigation-next">
-      <% if @week.next_week %>
-        <%= link_to "Next >", year_week_url(@week.year, @week.next_week) %>
-      <% end %>
+    <%= form_tag year_rows_path(@week.year), method: :post, id: "add-row-form" do %>
+      <%= hidden_field_tag "name", "", id: "add-row-name" %>
+    <% end %>
+    <% col_width = @week.days.any?(&:today?) ? 12 : 11 %>
+    <div class="col-md-<%= col_width %>">
+      <%= submit_tag "+ Add Row", class: "btn btn-primary", style: "width: 100%;", id: "btn-add-row" %>
     </div>
   </div>
 </div>
