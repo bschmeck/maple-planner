@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :years, only: [:index, :show, :create] do
     member do
+      post :extend
       get :for_date
     end
     resources :weeks, only: [:index, :show]

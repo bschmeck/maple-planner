@@ -68,6 +68,11 @@
       <div class="col-md-1 col-md-offset-4 navigation-next">
         <% if @week.next_week %>
           <%= link_to "Next >", year_week_url(@week.year, @week.next_week) %>
+        <% else %>
+          <%= form_tag extend_year_path(@week.year), method: :post, id: "add-weeks-form" do %>
+            <%= hidden_field_tag "number_of_weeks", "", id: "add-weeks-number" %>
+          <% end %>
+          <%= link_to "Add More Weeks", "#", id: "add-weeks-link" %>
         <% end %>
       </div>
     </div>

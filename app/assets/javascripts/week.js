@@ -34,6 +34,23 @@ Week = function() {
             $("#add-row-name").val(name);
             $("#add-row-form").submit();
         });
+        $("#add-weeks-link").on("click", function(event) {
+            var nWeeks = prompt("How many weeks would you like to add?");
+            while (true) {
+                if (nWeeks == null)
+                    // User clicked cancel
+                    return false;
+                else if (nWeeks == "")
+                    nWeeks = prompt("Number cannot be blank.\nHow many weeks would you like to add?");
+                else if (!/^\d+$/.test(nWeeks))
+                    nWeeks = prompt("Please enter a number.\nHow many weeks would you like to add?");
+                else
+                    break;
+            }
+
+            $("#add-weeks-number").val(nWeeks);
+            $("#add-weeks-form").submit();
+        });
     };
 
     self.toggle = function($cell) {

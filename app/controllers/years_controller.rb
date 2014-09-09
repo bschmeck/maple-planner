@@ -63,4 +63,17 @@ class YearsController < ApplicationController
       redirect_to :back, alert: "Unable to find week for that date"
     end
   end
+
+  def extend
+    year = current_user.years.find(params[:id])
+    begin
+      number_of_weeks = params[:number_of_weeks].to_i if params[:number_of_weeks]
+    rescue ArgumentError
+    end
+    redirect_to :back, alert: "Invalid number of weeks" unless number_of_weeks
+
+    year.extend(number_of_weeks)
+
+    redirect_to :back, alert: "Successfully extended year by #{number_of_weeks} weeks"
+  end
 end
