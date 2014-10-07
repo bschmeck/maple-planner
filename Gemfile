@@ -38,6 +38,7 @@ gem 'friendly_id', '~> 5.0.0'
 group :production do
   gem 'unicorn'
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
 
 group :development, :test do
