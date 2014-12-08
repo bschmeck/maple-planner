@@ -4,7 +4,7 @@ class YearsController < ApplicationController
 
   def index
     @years = current_user.years
-    @years = current_user.collaborating_years
+    @years += current_user.collaborating_years
     @years.sort_by!(&:created_at)
     @year = Year.new
   end
@@ -81,6 +81,10 @@ class YearsController < ApplicationController
   def find_year
     year_id = params[:id]
     @year = current_user.years.find_by(id: year_id)
+    @year ||= current_user.years.find_by(name: year_id)
     @year ||= current_user.collaborating_years.find_by(id: year_id)
+    @year ||= current_user.collaborating_years.find_by(name: year_id)
+
+    raise ActiveRecord::RecordNotFound.new unless @year
   end
 end
