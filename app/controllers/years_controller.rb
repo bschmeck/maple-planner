@@ -1,17 +1,19 @@
 class YearsController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_year, except: [:index, :create]
 
   def index
-    @years = current_user.years.order("created_at DESC")
+    @years = current_user.years
+    @years = current_user.collaborating_years
+    @years.sort_by!(&:created_at)
     @year = Year.new
   end
 
   def show
-    year = current_user.years.find(params[:id])
-    week = year.week_for(Date.today)
-    week ||= year.weeks.order(:number).first
+    week = @year.week_for(Date.today)
+    week ||= @year.weeks.order(:number).first
 
-    redirect_to year_week_url(year, week)
+    redirect_to year_week_url(@year, week)
   end
 
   def create
@@ -49,31 +51,36 @@ class YearsController < ApplicationController
   end
 
   def for_date
-    year = current_user.years.find(params[:id])
     begin
       date = Date.parse(params[:date])
     rescue ArgumentError
       redirect_to :back, alert: "Invalid date format"
     end
 
-    week = year.week_for(date)
+    week = @year.week_for(date)
     if week
-      redirect_to year_week_url(year, week)
+      redirect_to year_week_url(@year, week)
     else
       redirect_to :back, alert: "Unable to find week for that date"
     end
   end
 
   def extend
-    year = current_user.years.find(params[:id])
     begin
       number_of_weeks = params[:number_of_weeks].to_i if params[:number_of_weeks]
     rescue ArgumentError
     end
     redirect_to :back, alert: "Invalid number of weeks" unless number_of_weeks
 
-    year.extend(number_of_weeks)
+    @year.extend(number_of_weeks)
 
     redirect_to :back, alert: "Successfully extended year by #{number_of_weeks} weeks"
+  end
+
+  private
+  def find_year
+    year_id = params[:id]
+    @year = current_user.years.find_by(id: year_id)
+    @year ||= current_user.collaborating_years.find_by(id: year_id)
   end
 end

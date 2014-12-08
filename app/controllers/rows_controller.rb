@@ -2,7 +2,9 @@ class RowsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    year = current_user.years.find(params[:year_id])
+    year_id = params[:year_id]
+    year = current_user.years.find_by(id: year_id)
+    year ||= current_user.collaborating_years.find_by(id: year_id)
     name = params[:name]
 
     if year.rows.where(name: name).any?
