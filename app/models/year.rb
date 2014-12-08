@@ -5,6 +5,7 @@ class Year < ActiveRecord::Base
   has_many :weeks, dependent: :destroy
   has_many :rows
   belongs_to :user
+  has_many :collaborators, through: :collabortions, class_name: "User", foreign_key: :user_id
 
   def self.populate(user, name, number_of_weeks, start_date)
     start_date = start_date.beginning_of_week
