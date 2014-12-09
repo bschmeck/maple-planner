@@ -3,7 +3,7 @@ class Year < ActiveRecord::Base
   friendly_id :name, use: :finders
 
   has_many :weeks, dependent: :destroy
-  has_many :rows
+  has_many :rows, ->{ order(:order) }
   belongs_to :user
   has_many :collaborators, through: :collabortions, class_name: "User", foreign_key: :user_id
 
