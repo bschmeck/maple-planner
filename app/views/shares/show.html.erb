@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1 grade">
+      <div class="header cell"><br/>Name</div>
+    </div>
+    <% @week.days.order(:date).each do |day| %>
+      <% col_width = day.today? ? 3 : 2 %>
+      <div class="col-md-<%= col_width %>">
+        <div class="header cell <%= "text-info" if day.today? %>">
+          <%= day.name %><br/><%= day.date.strftime("%-m/%d") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <% @rows.each do |row| %>
+    <div class="row">
+      <div class="col-md-1 grade">
+        <div class="cell"><%= row.name %></div>
+      </div>
+      <% @week.days.order(:date).each do |day| %>
+        <% col_width = day.today? ? 3 : 2 %>
+        <div class="col-md-<%= col_width %>">
+          <div class="day cell <%= "bg-info" if day.today? %>">
+            <ul>
+              <% day.items_for_row(row).each do |item| %>
+                <li>
+                  <% if item.url %>
+                    <%= link_to item.text, item.url %>
+                  <% else %>
+                    <%= item.text %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @rows.any? %>
+    <div class="row">
+      <div class="col-md-1 navigation-prev">
+        <% if @week.prev_week %>
+          <%= link_to "< Previous", share_url(@share, week: @week.prev_week.id) %>
+        <% end %>
+      </div>
+      <% offset = @week.days.any?(&:today?) ? 4 : 3 %>
+      <div class="col-md-2 col-md-offset-<%= offset %>">
+        <%= form_tag for_date_year_path(@week.year), class: "navigation-form", method: :get do %>
+          <div class="input-group">
+            <%= text_field_tag "date", "", placeholder: "Jump to date", class: "form-control" %>
+            <span class="input-group-btn"><%= submit_tag "Go", class: "btn btn-primary" %></span>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-1 col-md-offset-4 navigation-next">
+        <% if @week.next_week %>
+          <%= link_to "Next >", share_url(@share, week: @week.next_week.id) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

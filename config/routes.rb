@@ -20,5 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :shares, only: [:show]
+
   root to: "years#index"
 end
