@@ -37,6 +37,8 @@ gem 'friendly_id', '~> 5.0.0'
 
 gem 'table_print'
 
+gem 'airbrake'
+
 group :production do
   gem 'unicorn'
   gem 'rails_12factor'
