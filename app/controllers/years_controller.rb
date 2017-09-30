@@ -54,7 +54,7 @@ class YearsController < ApplicationController
     begin
       date = Date.parse(params[:date])
     rescue ArgumentError
-      redirect_to :back, alert: "Invalid date format"
+      redirect_to :back, alert: "Invalid date format" and return
     end
 
     week = @year.week_for(date)
@@ -70,7 +70,7 @@ class YearsController < ApplicationController
       number_of_weeks = params[:number_of_weeks].to_i if params[:number_of_weeks]
     rescue ArgumentError
     end
-    redirect_to :back, alert: "Invalid number of weeks" unless number_of_weeks
+    redirect_to :back, alert: "Invalid number of weeks" and return unless number_of_weeks
 
     @year.extend(number_of_weeks)
 
