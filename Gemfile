@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby "2.2.1"
+ruby "2.3.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.5'
+gem 'rails', '~> 4.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -29,7 +29,7 @@ gem 'pg'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
-gem 'devise', '~> 3.2.4'
+gem 'devise', '~> 3.4.1'
 gem 'devise-encryptable', '~> 0.2.0'
 gem 'omniauth-google-oauth2'
 
