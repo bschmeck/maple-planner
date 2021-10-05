@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(version: 20150311021115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "collaborations", force: true do |t|
+  create_table "collaborations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "year_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "days", force: true do |t|
+  create_table "days", force: :cascade do |t|
     t.string   "name"
     t.integer  "week_id"
     t.datetime "created_at"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150311021115) do
     t.datetime "date"
   end
 
-  create_table "items", force: true do |t|
+  create_table "items", force: :cascade do |t|
     t.string   "text"
     t.string   "url"
     t.integer  "day_id"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150311021115) do
     t.integer  "row_id"
   end
 
-  create_table "rows", force: true do |t|
+  create_table "rows", force: :cascade do |t|
     t.string   "name",                     null: false
     t.integer  "year_id"
     t.datetime "created_at"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150311021115) do
     t.integer  "order",      default: 100
   end
 
-  create_table "shares", force: true do |t|
+  create_table "shares", force: :cascade do |t|
     t.string   "code",        null: false
     t.string   "description"
     t.datetime "expiration"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20150311021115) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",               default: "", null: false
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",       default: 0,  null: false
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20150311021115) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
-  create_table "weeks", force: true do |t|
+  create_table "weeks", force: :cascade do |t|
     t.integer  "number"
     t.datetime "start_date"
     t.integer  "year_id"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20150311021115) do
     t.datetime "updated_at"
   end
 
-  create_table "years", force: true do |t|
+  create_table "years", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
