@@ -1,4 +1,4 @@
-class Year < ActiveRecord::Base
+class Year < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :finders
 

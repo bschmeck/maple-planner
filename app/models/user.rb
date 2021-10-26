@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   has_many :years

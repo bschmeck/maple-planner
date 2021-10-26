@@ -1,4 +1,4 @@
-class Day < ActiveRecord::Base
+class Day < ApplicationRecord
   belongs_to :week
   has_one :year, through: :week
 
