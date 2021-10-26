@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-ruby "2.3.1"
+ruby "2.6.8"
+
+gem 'rake'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2'
+gem 'rails', '5.0.7.2'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -26,12 +26,13 @@ gem 'spring',        group: :development
 
 gem 'pg'
 
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.2.0.4'
 gem 'autoprefixer-rails'
 
-gem 'devise', '~> 3.4.1'
+gem 'devise'
 gem 'devise-encryptable', '~> 0.2.0'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 gem 'friendly_id', '~> 5.0.0'
 
@@ -46,6 +47,6 @@ group :production do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
-  gem 'factory_girl_rails', '~> 4.4.0'
+  gem 'rspec-rails', '~> 4'
+  gem 'factory_girl_rails'
 end

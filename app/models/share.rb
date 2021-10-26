@@ -1,6 +1,6 @@
 require 'securerandom'
 
-class Share < ActiveRecord::Base
+class Share < ApplicationRecord
   belongs_to :year
 
   before_save :assign_random_code

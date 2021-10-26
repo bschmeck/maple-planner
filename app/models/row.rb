@@ -1,4 +1,4 @@
-class Row < ActiveRecord::Base
+class Row < ApplicationRecord
   belongs_to :year
   has_one :user, through: :year
 

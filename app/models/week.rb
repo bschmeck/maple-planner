@@ -1,4 +1,4 @@
-class Week < ActiveRecord::Base
+class Week < ApplicationRecord
   extend FriendlyId
   friendly_id :number, use: :finders
 
