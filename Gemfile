@@ -32,6 +32,7 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem 'devise-encryptable', '~> 0.2.0'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 gem 'friendly_id', '~> 5.0.0'
 
