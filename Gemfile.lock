@@ -62,11 +62,11 @@ GEM
     diff-lcs (1.4.4)
     erubis (2.7.0)
     execjs (2.8.1)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faraday (1.8.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -258,7 +258,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0.4)
   devise
   devise-encryptable (~> 0.2.0)
-  factory_girl_rails
+  factory_bot_rails
   friendly_id (~> 5.0.0)
   jbuilder (~> 2.0)
   jquery-rails
