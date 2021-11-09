@@ -7,6 +7,20 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <nav class="navbar navbar-default">
+      <a class="navbar-brand" href="#">Maple Planner</a>
+
+      <div class="navbar-right">
+        <ul class="nav navbar-nav">
+          <li>
+            <p class="navbar-text">email@example.com</p>
+          </li>
+          <li>
+            <a href="#">Sign Out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
     <% if notice %><p class="alert alert-success"><%= notice %></p><% end %>
     <% if alert %><p class="alert alert-danger"><%= alert %></p><% end %>
