@@ -46,7 +46,7 @@ class YearsController < ApplicationController
       redirect_to year_week_url(@year, @year.weeks.first)
     else
       err ||= "Unable to create school year"
-      redirect_to :back, alert: err
+      redirect_back(fallback_location: root_url, alert: err)
     end
   end
 
@@ -54,14 +54,14 @@ class YearsController < ApplicationController
     begin
       date = Date.parse(params[:date])
     rescue ArgumentError
-      redirect_to :back, alert: "Invalid date format" and return
+      redirect_back(fallback_location: year_week_url(@year, @year.weeks.first), alert: "Invalid date format") and return
     end
 
     week = @year.week_for(date)
     if week
       redirect_to year_week_url(@year, week)
     else
-      redirect_to :back, alert: "Unable to find week for that date"
+      redirect_back(fallback_location: year_week_url(@year, @year.weeks.first), alert: "Unable to find week for that date")
     end
   end
 
@@ -70,11 +70,11 @@ class YearsController < ApplicationController
       number_of_weeks = params[:number_of_weeks].to_i if params[:number_of_weeks]
     rescue ArgumentError
     end
-    redirect_to :back, alert: "Invalid number of weeks" and return unless number_of_weeks
+    redirect_back(fallback_location: year_week_url(@year, @year.weeks.first), alert: "Invalid number of weeks") and return unless number_of_weeks
 
     @year.extend(number_of_weeks)
 
-    redirect_to :back, alert: "Successfully extended year by #{number_of_weeks} weeks"
+    redirect_back(fallback_location: year_week_url(@year, @year.weeks.first), alert: "Successfully extended year by #{number_of_weeks} weeks")
   end
 
   private

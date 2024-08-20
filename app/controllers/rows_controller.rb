@@ -18,6 +18,6 @@ class RowsController < ApplicationController
       message = { notice: "Successfully created row #{name}." }
     end
 
-    redirect_to :back, message
+    redirect_back(message.merge(fallback_location: year_week_url(year, year.weeks.first)))
   end
 end
