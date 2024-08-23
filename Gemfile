@@ -50,4 +50,5 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 4'
   gem 'factory_bot_rails'
+  gem 'pry'
 end
