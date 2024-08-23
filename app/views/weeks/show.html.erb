@@ -3,7 +3,7 @@
     <div class="col-md-1 grade">
       <div class="header cell"><br/>Name</div>
     </div>
-    <% @week.days.order(:date).each do |day| %>
+    <% @days.each do |day| %>
       <% col_width = day.today? ? 3 : 2 %>
       <div class="col-md-<%= col_width %>">
         <div class="header cell <%= "text-info" if day.today? %>">
@@ -13,17 +13,18 @@
     <% end %>
   </div>
   <% @rows.each do |row| %>
+    <% row_items = @items.fetch(row.id, []).group_by(&:day_id) %>
     <div class="row">
       <div class="col-md-1 grade">
         <div class="cell"><%= row.name %></div>
       </div>
-      <% @week.days.order(:date).each do |day| %>
+      <% @days.each do |day| %>
         <% col_width = day.today? ? 3 : 2 %>
         <div class="col-md-<%= col_width %>">
           <div class="day cell <%= "bg-info" if day.today? %>">
             <ul>
-              <% if day.items_for_row(row).any? %>
-                <% day.items_for_row(row).each do |item| %>
+              <% if row_items.fetch(day.id, []).any? %>
+                <% row_items[day.id].each do |item| %>
                   <li>
                     <% if item.url %>
                       <%= link_to item.text, item.url %>
@@ -37,7 +38,7 @@
               <% end %>
             </ul>
             <%= form_tag items_day_path(day), class: "items_form" do %>
-              <%= text_area_tag "items", day.items_for_row(row).map{|item| item.text + (item.url ? " [#{item.url}]" : "") }.join("\n\n"), rows: 5 %>
+              <%= text_area_tag "items", row_items.fetch(day.id, []).map{|item| item.text + (item.url ? " [#{item.url}]" : "") }.join("\n\n"), rows: 5 %>
               <br>
               <%= hidden_field_tag :row_id, row.id %>
               <%= submit_tag "Update", class: "btn btn-primary" %>

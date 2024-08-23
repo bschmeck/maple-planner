@@ -11,6 +11,8 @@ class WeeksController < ApplicationController
     raise ActiveRecord::RecordNotFound.new unless year
 
     @week = year.weeks.find(params[:id])
+    @days = @week.days.order(:date)
     @rows = year.rows
+    @items = Item.where(row: @rows, day: @days).group_by(&:row_id)
   end
 end
