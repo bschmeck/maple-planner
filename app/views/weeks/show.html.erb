@@ -92,7 +92,8 @@
 
 <script type="text/javascript">
   $(function() {
-    $("#date").datepicker({dateFormat: "yy-mm-dd"});
+    var monday = new Date(<%= @days.first.date.year %>, <%= @days.first.date.month - 1 %>, <%= @days.first.date.day %>);
+    $("#date").datepicker({dateFormat: "yy-mm-dd", defaultDate: monday});
 
     var week = new Week();
     week.init();
