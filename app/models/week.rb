@@ -7,9 +7,9 @@ class Week < ApplicationRecord
   has_many :days, dependent: :destroy
 
   def self.populate(number, start_date)
-    week = create(number: number, start_date: start_date)
+    week = new(number: number, start_date: start_date)
     %w{ Monday Tuesday Wednesday Thursday Friday}.each_with_index do |day, i|
-      week.days.create(name: day, date: start_date + i.days)
+      week.days.new(name: day, date: start_date + i.days)
     end
 
     week
