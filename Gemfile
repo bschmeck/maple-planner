@@ -5,12 +5,15 @@ ruby "2.6.10"
 gem 'rake'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2'
+gem 'rails', '6.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem "bootsnap", require: false
+gem "ffi", "< 1.17.0"
+gem 'concurrent-ruby', '1.3.4'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
