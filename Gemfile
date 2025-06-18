@@ -55,3 +55,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry'
 end
+
+group :development do
+  gem 'listen'
+end
