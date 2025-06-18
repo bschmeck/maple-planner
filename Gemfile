@@ -30,7 +30,7 @@ gem 'spring',        group: :development
 
 gem 'pg'
 
-gem 'bootstrap-sass', '~> 3.2.0.4'
+gem 'bootstrap-sass', '~> 3'
 gem 'autoprefixer-rails'
 
 gem 'devise'
