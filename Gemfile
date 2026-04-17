@@ -44,8 +44,9 @@ gem 'table_print'
 
 gem 'airbrake'
 
+gem 'puma'
+
 group :production do
-  gem 'unicorn'
   gem 'rails_12factor'
   gem 'newrelic_rpm'
 end
