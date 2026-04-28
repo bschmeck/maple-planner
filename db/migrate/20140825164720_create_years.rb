@@ -1,4 +1,4 @@
-class CreateYears < ActiveRecord::Migration
+class CreateYears < ActiveRecord::Migration[4.2]
   def change
     create_table :years do |t|
       t.string :name, null: false

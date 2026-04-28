@@ -1,4 +1,4 @@
-class AddOrderToRow < ActiveRecord::Migration
+class AddOrderToRow < ActiveRecord::Migration[4.2]
   class Row < ActiveRecord::Base
   end
 
