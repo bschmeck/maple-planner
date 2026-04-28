@@ -1,1 +1,1 @@
-web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
+web: bundle exec rails server --port=${PORT:-5000} --environment=$RAILS_ENV
