@@ -1,4 +1,4 @@
-class CreateRows < ActiveRecord::Migration
+class CreateRows < ActiveRecord::Migration[4.2]
   def change
     create_table :rows do |t|
       t.string :name, null: false

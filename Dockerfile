@@ -1,4 +1,4 @@
-FROM ruby:2.6.10
+FROM ruby:3.1.6
 
 RUN apt-get update \
         && apt-get install -y --no-install-recommends postgresql-client \
@@ -12,3 +12,4 @@ WORKDIR /usr/src/app
 
 COPY Gemfile* ./
 RUN bundle install
+COPY . .
