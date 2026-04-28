@@ -129,7 +129,6 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
-    json (1.8.6)
     jwt (2.3.0)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -239,7 +238,6 @@ GEM
     rb-inotify (0.11.1)
       ffi (~> 1.0)
     rbtree3 (0.7.1)
-    rdoc (4.3.0)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -271,9 +269,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sdoc (0.4.2)
-      json (~> 1.7, >= 1.7.7)
-      rdoc (~> 4.0)
     spring (3.0.0)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
@@ -331,7 +326,6 @@ DEPENDENCIES
   rake
   rspec-rails (~> 4)
   sass-rails
-  sdoc (~> 0.4.0)
   spring
   table_print
   turbolinks
